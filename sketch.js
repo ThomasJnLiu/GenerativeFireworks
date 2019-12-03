@@ -14,9 +14,9 @@ function setup() {
 
 function draw(){
     background(0, 50);
-    
+    rect(30, 20, 55, 55);
     if(fireworks.length <= 0){
-        fireworks.push(new Firework(width/2, height, random(-16, -17)));
+        fireworks.push(new Firework(width/2, height, -14));
     }
     // if(random(1)< 0.01){
     //     fireworks.push(new Firework(random(width), height));

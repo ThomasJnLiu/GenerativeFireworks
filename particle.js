@@ -35,10 +35,15 @@ function Particle (x,y, vely, firework){
 
     this.done = function(){
         if(this.lifespan < 0){
-            if(random(1)< 0.015 && fireworks.length < 50){
-                fireworks.push(new Firework(this.pos.x, this.pos.y, 0));
-                //console.log(fireworks.length);
+            //avoid spawning fireworks too close to edge of screen
+            if(this.pos.x < windowWidth-250 && this.pos.x > 250 && this.pos.y < windowHeight-250 && this.pos.y > 250){
+                //each particle has a 1.5% chance of exploding 
+                if(random(1)< 0.015 && fireworks.length < 50){
+                    fireworks.push(new Firework(this.pos.x, this.pos.y, 0));
+                    //console.log(fireworks.length);
+                }
             }
+
             
             return true;
             
