@@ -3,9 +3,10 @@ function Particle (x,y, vely, firework){
     this.pos = createVector(x,y);
     //tracks if original firework or emitted particle
     this.firework = firework;
+
     this.lifespan = random(150, 500);
-
-
+    this.colour = [random(255),random(255),random(255)]; 
+    
     if(this.firework){
         // this.vel = createVector(0,random(-17, -18));
         this.vel = createVector(0,vely);
@@ -27,6 +28,8 @@ function Particle (x,y, vely, firework){
         //clear acceleration 
         this.acc.mult(0);
 
+        //change colour
+
         if(!this.firework){
             this.vel.mult(0.95);
             this.lifespan -= random(0.1, 10);
@@ -40,7 +43,6 @@ function Particle (x,y, vely, firework){
                 //each particle has a 1.5% chance of exploding 
                 if(random(1)< 0.015 && fireworks.length < 50){
                     fireworks.push(new Firework(this.pos.x, this.pos.y, 0));
-                    //console.log(fireworks.length);
                 }
             }
 
@@ -53,14 +55,17 @@ function Particle (x,y, vely, firework){
     }
 
     this.show = function(){
+        //check if this is the initial firework
         if(!this.firework){
             strokeWeight(5);
-            stroke(255,this.lifespan);
+            stroke(this.colour[0],this.colour[1],this.colour[2],this.lifespan);
         }else{
+            //settings for the initial firework
             strokeWeight(4);
-            stroke(255);
+            stroke(random(150,255));
         }
 
+        //create point/circle at location
         point(this.pos.x, this.pos.y);
     }
 }
